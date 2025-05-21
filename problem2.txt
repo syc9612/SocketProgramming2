@@ -1,0 +1,14 @@
+git push 실패
+왜 실패지?
+
+시나리오
+1. git init으로 git 생성
+2. 2~3개정도의 커밋 발생
+3. 원격 레포에 push 하려했으나 실패
+
+해결
+1. git pull origin main --rebase
+2. git push origin main
+
+해결됨.
+아마 원격 레포랑의 커밋이 충돌나서 rebase 처리를 해준거같은데 알쏭달쏭.
