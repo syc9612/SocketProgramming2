@@ -9,8 +9,12 @@ std::string receive(tcp::socket& socket)
 {
     boost::asio::streambuf buf;
     boost::system::error_code ec;
-    read_until(socket, buf, "\n", ec);
-    return boost::asio::buffer_cast<const char*>(buf.data());
+    boost::asio::read_until(socket, buf, "\n", ec);
+
+    std::istream is(&buf);
+    std::string line;
+    std::getline(is, line); // '\n' 제거됨
+    return line;
 }
 
 void send(tcp::socket& socket, const std::string& message)
