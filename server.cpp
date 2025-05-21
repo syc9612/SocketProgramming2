@@ -17,6 +17,9 @@ class tcp_connection : public boost::enable_shared_from_this<tcp_connection>{
     std::string client_name_;
     std::unordered_map<std::string, std::shared_ptr<tcp::socket>> name_to_socket_;
 
+    tcp_connection(boost::asio::io_context& io_context){
+        sock_ptr_ = std::make_shared<tcp::socket>(io_context);
+    }
 
     void handle_receive(const boost::system::error_code& e, std::shared_ptr<boost::array<char, 1024>> buf_ptr){
         if (!e)
